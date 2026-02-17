@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --font-inter: var(--font-inter);
+  --font-playfair: var(--font-playfair);
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+}
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #f5f5f5;
+
+  --card: #121212;
+  --card-foreground: #f5f5f5;
+
+  --popover: #121212;
+  --popover-foreground: #f5f5f5;
+
+  --primary: #10b981;
+  /* Emerald 500 */
+  --primary-foreground: #0a0a0a;
+
+  --secondary: #27272a;
+  --secondary-foreground: #f5f5f5;
+
+  --muted: #27272a;
+  --muted-foreground: #a1a1aa;
+
+  --accent: #10b981;
+  --accent-foreground: #0a0a0a;
+
+  --destructive: #ef4444;
+  --destructive-foreground: #f5f5f5;
+
+  --border: #27272a;
+  --input: #27272a;
+  --ring: #10b981;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif;
+  }
+}
+
+.noir-container {
+  @apply container mx-auto px-4 py-8;
+}
+
+.noir-card {
+  @apply bg-card text-card-foreground border border-border rounded-none shadow-sm p-6;
+}
+
+.noir-button {
+  @apply inline-flex items-center justify-center rounded-none text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-9 px-4 py-2;
+}
+
+.noir-input {
+  @apply flex h-9 w-full rounded-none border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50;
+}

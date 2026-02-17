@@ -1,0 +1,40 @@
+name: Deploy Neuro-Sync AI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Build Next.js
+        run: |
+          cd frontend
+          npm install
+          npm run build
+
+      - name: Deploy to DigitalOcean App Platform
+        run: |
+          doctl apps create-deployment ${{ secrets.DO_APP_ID }} --wait
+
+      - name: Deploy Gradient Agent
+        env:
+          GRADIENT_ACCESS_TOKEN: ${{ secrets.GRADIENT_ACCESS_TOKEN }}
+          GRADIENT_WORKSPACE_ID: ${{ secrets.GRADIENT_WORKSPACE_ID }}
+        run: |
+          # Gradient CLI installation and usage mock
+          # curl -sL https://gradient.ai/install | bash
+          # gradient agent deploy --file backend/main.py
+          echo "Deploying Gradient Agent..."
+          # In a real scenario, we'd use the gradient-cli or ADK deploy command here.
